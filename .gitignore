@@ -1,0 +1,7 @@
+local-access_log
+local-error_log
+
+.idea
+.DS_Store
+Thumbs.db
+
