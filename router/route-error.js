@@ -1,4 +1,5 @@
-// !!
-module.exports = { RouterError };
-
 class RouterError extends Error {};
+
+module.exports = {
+  RouterError  
+}

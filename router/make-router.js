@@ -1,4 +1,6 @@
-module.export = { makeRouter };
+module.exports = makeRouter;
+
+const { RouterError } = require('./route-error');
 
 function makeRouter(routes) {
   return (req, res) => {    

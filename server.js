@@ -1,5 +1,15 @@
 const http = require('http');
 
+const {
+  blockMainThreadHandler,
+  leakHandler,
+  homeHandler  
+} = require('./handlers');
+
+const { makeRouter, RouteError } = require('./router');
+
+console.dir(require('./router'));
+
 const port = 7777;
 const hostname = '127.0.0.1';
 
@@ -14,6 +24,7 @@ const config = {
   iterationSize: 1000,
 };
 
+// @todo: Move out
 const route = makeRouter({
   '/leak': leakHandler(config.leakSize),
   '/block': blockMainThreadHandler(config.iterationSize),
@@ -27,7 +38,7 @@ function handler(req, res) {
   try {
     route(req, res);    
   } catch (error) {
-    onError(error, 'Something went wrong.');
+    onError(error);
     statusCode = 500;
   } 
   
@@ -35,7 +46,7 @@ function handler(req, res) {
   res.end(null);  
 }
 
-function onError(error, defaultMessage) {
+function onError(error, defaultMessage = 'Something went wrong.') {
   return (req, res) => {
     const userErrorMessage = defaultMessage;
     console.log(e.message || userErrorMessage);
