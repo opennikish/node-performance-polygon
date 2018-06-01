@@ -8,7 +8,6 @@ const {
 
 const { makeRouter, RouteError } = require('./router');
 
-console.dir(require('./router'));
 
 const port = 7777;
 const hostname = '127.0.0.1';
