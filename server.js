@@ -1,22 +1,15 @@
 const http = require('http');
-
+const { makeRouter, RouteError } = require('./router');
 const {
   blockMainThreadHandler,
   leakHandler,
-  homeHandler  
+  homeHandler,
+  // Create more..  
 } = require('./handlers');
-
-const { makeRouter, RouteError } = require('./router');
 
 
 const port = 7777;
 const hostname = '127.0.0.1';
-
-const server = http.createServer(handler);
-
-server.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 
 const config = {
   leakSize: 1000000,
@@ -28,6 +21,12 @@ const route = makeRouter({
   '/leak': leakHandler(config.leakSize),
   '/block': blockMainThreadHandler(config.iterationSize),
   '/': homeHandler()
+});
+
+const server = http.createServer(handler);
+
+server.listen(port, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 function handler(req, res) {  
