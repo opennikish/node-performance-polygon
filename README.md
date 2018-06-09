@@ -3,7 +3,7 @@
 This is minimalist polygon to lear how to profile Node.js, find memory leaks, high CPU consumption, etc.
 It has no dependencies - only pure Node.js
 
-It has endpoints the following endpoints:
+It has the following endpoints:
 
 `server.js`  | endpoint
 --- | ---
@@ -29,7 +29,6 @@ There you're getting power!
 #### 1. Debug memory leak
 
 ![Inspect Memory Leak](assets/inspect-leak.gif)
-
 
 - - -
 #### Fake request sequence
